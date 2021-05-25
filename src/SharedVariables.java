@@ -2,6 +2,7 @@
 public class SharedVariables {
 
 	private int currentPosition = 0;
+	private int nextPosition = 0;
 	private boolean go = false;
 	private static SharedVariables instance = null;
 	
@@ -16,6 +17,12 @@ public class SharedVariables {
 		return instance;
 	}
 	
+	public int GetNextPosition() {
+		return nextPosition;
+	}
+	public void SetNextPosition(int value) {
+		nextPosition = value;
+	}
 	public int GetCurrentPosition() {
 		return currentPosition;
 	}

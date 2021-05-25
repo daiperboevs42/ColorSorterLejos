@@ -25,6 +25,7 @@ public class MainBot {
 		smallMotor = new EV3MediumRegulatedMotor(MotorPort.A);
 		smallMotor.setSpeed(700);
 		bigMotor.setSpeed(200);
+		SharedVariables.GetInstance();
 		
 		Port port = LocalEV3.get().getPort("S3");
 		// Get an instance of the EV3 sensor

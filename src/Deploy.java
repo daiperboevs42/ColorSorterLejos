@@ -14,14 +14,15 @@ public class Deploy implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		if(SharedVariables.GetInstance().GetGo())
+		if(SharedVariables.GetInstance().GetGo() == true) {
 			return true;
+			}
 		return false;
 	}
 
 	@Override
 	public void action() {
-		driveTo(SharedVariables.GetInstance().GetCurrentPosition());
+		driveTo(SharedVariables.GetInstance().GetNextPosition());
 		popOut();
 	}
 
