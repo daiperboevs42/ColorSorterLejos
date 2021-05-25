@@ -1,10 +1,9 @@
-import lejos.hardware.Button;
-import lejos.hardware.Key;
-import lejos.hardware.KeyListener;
-import lejos.hardware.motor.Motor;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
+import lejos.hardware.Sound;
+
+
 
 public class Stop implements Behavior {
 
@@ -19,7 +18,10 @@ public class Stop implements Behavior {
 	
 	@Override
 	public boolean takeControl() {
-		// TODO Auto-generated method stub
+		boolean stop = SharedVariables.GetInstance().GetStop();
+		boolean go = SharedVariables.GetInstance().GetGo();
+		if(stop && !go)
+			return true;
 		return false;
 	}
 

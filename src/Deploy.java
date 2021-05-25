@@ -1,3 +1,4 @@
+import lejos.hardware.Sound;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
@@ -14,7 +15,8 @@ public class Deploy implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		if(SharedVariables.GetInstance().GetGo() == true) {
+		boolean go = SharedVariables.GetInstance().GetGo();
+		if(go) {
 			return true;
 			}
 		return false;
@@ -50,6 +52,12 @@ public class Deploy implements Behavior {
 
 		switch (SharedVariables.GetInstance().GetCurrentPosition()) {
 		case 0:
+			if(SharedVariables.GetInstance().GetStop()) {
+				driveTo(0);
+				Sound.beepSequence();
+				SharedVariables.GetInstance().SetGo(false);
+				break;
+			}
 			driveTo(1);
 			SharedVariables.GetInstance().SetGo(false);
 			break;

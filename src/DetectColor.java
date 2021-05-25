@@ -14,7 +14,8 @@ public class DetectColor implements Behavior {
 	}
 	@Override
 	public boolean takeControl() {
-		if(SharedVariables.GetInstance().GetGo() == false)
+		boolean go = SharedVariables.GetInstance().GetGo();
+		if(!go)
 			return true;
 		return false;
 	}
@@ -24,9 +25,6 @@ public class DetectColor implements Behavior {
 		// Do the Sorting
 		
 					LCD.clear();
-
-					boolean stack_full = true;
-					while (stack_full) {
 
 						switch (sensor.getColorID()) {
 						case Color.BLUE:
@@ -52,7 +50,8 @@ public class DetectColor implements Behavior {
 
 						case Color.RED:
 							LCD.clear();
-							LCD.drawString("Red", 0, 4);
+							LCD.drawString("AAAAAAAAAAAAAAAAAAAH", 0, 4);
+							Sound.beepSequenceUp();
 							SharedVariables.GetInstance().SetNextPosition(3);
 							SharedVariables.GetInstance().SetGo(true);
 							break;
@@ -64,10 +63,9 @@ public class DetectColor implements Behavior {
 							LCD.drawString("Stack is empty", 0, 4);
 							SharedVariables.GetInstance().SetNextPosition(0);
 							SharedVariables.GetInstance().SetGo(true);
-							stack_full = false;
+							SharedVariables.GetInstance().SetStop(true);
 							break;
 						}
-					}
 	}
 
 	@Override
